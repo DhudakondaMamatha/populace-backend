@@ -22,6 +22,7 @@ import com.populace.staff.service.StaffWorkParametersService;
 import com.populace.staff.service.LeaveSummaryService;
 import com.populace.staff.service.StaffRoleService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -38,7 +39,10 @@ import java.util.List;
 @RequestMapping("/api/staff")
 public class StaffController {
 
-    private final StaffService staffService;
+
+
+    @Autowired
+    private  StaffService staffService;
     private final ScheduleService scheduleService;
     private final StaffWorkParametersService workParametersService;
     private final LeaveSummaryService leaveSummaryService;
@@ -46,7 +50,7 @@ public class StaffController {
     private final StaffRoleService staffRoleService;
     private final PermissionGuard permissionGuard;
 
-    public StaffController(StaffService staffService,
+    public StaffController(
                            ScheduleService scheduleService,
                            StaffWorkParametersService workParametersService,
                            LeaveSummaryService leaveSummaryService,

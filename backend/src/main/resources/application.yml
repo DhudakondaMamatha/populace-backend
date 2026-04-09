@@ -3,9 +3,9 @@ spring:
     name: populace-api
 
   datasource:
-    url: jdbc:postgresql://database-1.czgoo86i4qpd.ap-south-2.rds.amazonaws.com:5432/populace
+    url: jdbc:postgresql://localhost:5432/Populace
     username: postgres
-    password: Dbp!123456
+    password: admin123
     hikari:
       maximum-pool-size: 10
       minimum-idle: 5
