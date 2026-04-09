@@ -41,8 +41,7 @@ public class StaffController {
 
 
 
-    @Autowired
-    private  StaffService staffService;
+    private final StaffService staffService;
     private final ScheduleService scheduleService;
     private final StaffWorkParametersService workParametersService;
     private final LeaveSummaryService leaveSummaryService;
@@ -50,7 +49,7 @@ public class StaffController {
     private final StaffRoleService staffRoleService;
     private final PermissionGuard permissionGuard;
 
-    public StaffController(
+    public StaffController(StaffService staffService,
                            ScheduleService scheduleService,
                            StaffWorkParametersService workParametersService,
                            LeaveSummaryService leaveSummaryService,
