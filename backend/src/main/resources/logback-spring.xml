@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+    <!-- Allocation Decisions File Appender -->
+    <appender name="ALLOCATION_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/allocation-decisions.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/allocation-decisions.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Allocation Decisions Console Appender (formatted for readability) -->
+    <appender name="ALLOCATION_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss} %-5level - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Allocation Decisions Logger -->
+    <logger name="AllocationDecisions" level="DEBUG" additivity="false">
+        <appender-ref ref="ALLOCATION_CONSOLE"/>
+        <appender-ref ref="ALLOCATION_FILE"/>
+    </logger>
+
+    <!-- Root Logger -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <!-- Spring Profile: local - more verbose -->
+    <springProfile name="local">
+        <logger name="com.populace" level="DEBUG"/>
+        <logger name="AllocationDecisions" level="DEBUG"/>
+    </springProfile>
+
+    <!-- Spring Profile: production - less verbose -->
+    <springProfile name="prod">
+        <logger name="com.populace" level="INFO"/>
+        <logger name="AllocationDecisions" level="INFO"/>
+    </springProfile>
+</configuration>

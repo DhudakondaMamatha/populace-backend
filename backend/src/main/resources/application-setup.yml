@@ -1,0 +1,10 @@
+# Profile for running data setup
+# Use: mvn spring-boot:run -Dspring-boot.run.profiles=setup
+
+spring:
+  main:
+    web-application-type: servlet
+
+logging:
+  level:
+    com.populace.setup: INFO
